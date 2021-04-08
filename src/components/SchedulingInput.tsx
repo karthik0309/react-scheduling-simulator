@@ -6,14 +6,14 @@ import classes from '../css/SchedulingInput.module.css'
 import { useGlobalState } from '../GlobalState/Index'
 const SchedulingInput: React.FC = () => {
 
-    const {state,dispatch}=useGlobalState()
+    const {dispatch}=useGlobalState()
     const [times,setTimes]=useState({
         arrivalTime:[0],
         burstTime:[0],
         priority:[0],
         timeQuantum:0
     })
-    const {arrivalTime,burstTime,priority}=times
+    const {arrivalTime,burstTime,priority,timeQuantum}=times
 
     const handleArrivalTime=(event:React.ChangeEvent<HTMLInputElement>,index:number)=>{
         let updatedArrival=[...arrivalTime]
@@ -24,13 +24,13 @@ const SchedulingInput: React.FC = () => {
     const handleBurstTime=(event:React.ChangeEvent<HTMLInputElement>,index:number)=>{
         let updatedBurst=[...burstTime]
         updatedBurst[index]=parseInt(event.target.value)
-        setTimes({...times,arrivalTime:updatedBurst})
+        setTimes({...times,burstTime:updatedBurst})
     }
 
     const handlePriority=(event:React.ChangeEvent<HTMLInputElement>,index:number)=>{
         let updatedPriority=[...priority]
         updatedPriority[index]=parseInt(event.target.value)
-        setTimes({...times,arrivalTime:updatedPriority})
+        setTimes({...times,priority:updatedPriority})
     }
 
     const handleTimeQuantum=(event:React.ChangeEvent<HTMLInputElement>)=>{
@@ -41,7 +41,7 @@ const SchedulingInput: React.FC = () => {
         setTimes({...times,
             arrivalTime:[...arrivalTime,0],
             burstTime:[...burstTime,0],
-            priority:[...priority,0]})
+            priority:[...priority,0],})
     } 
 
     const handleDelete=()=>{
@@ -65,6 +65,7 @@ const SchedulingInput: React.FC = () => {
             alert("Input more then one row")
             return;
         }
+        dispatch({type:"SETDATA",arrivalTime,burstTime,priority,timeQuantum})
     }
     return (
         <div>

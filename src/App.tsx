@@ -3,8 +3,8 @@ import Header from './components/Header'
 import SchedulingType from './components/SchedulingType'
 import SchedulingOutPut from './components/SchedulingOutPut'
 import StateProvider from './GlobalState/Index'
-import Ganttchart from './components/GanttChart'
 import './App.css'
+import GanttChart from './components/GanttChart'
 const App = () => {
   return (
     <StateProvider>
@@ -12,6 +12,7 @@ const App = () => {
       <SchedulingInput/>
       <SchedulingType/>
       <SchedulingOutPut/>
+      <GanttChart/>
     </StateProvider>
   )
 }

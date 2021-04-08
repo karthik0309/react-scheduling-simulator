@@ -1,25 +1,28 @@
 import React from 'react'
-import Gantt from './Gantt'
+import { useGlobalState } from '../GlobalState/Index'
+import styled from 'styled-components'
+const GanttChart:React.FC = () => {
 
-type Props={
-    inputStartTime?:any,
-    inputStopTime?:any,
-    maxTime:number
-}
+    let {state}=useGlobalState()
 
-const GanttChart:React.FC<Props> = ({maxTime,inputStartTime,inputStopTime}) => {
-
-    const ganttChart=[]
-    for(let i=0;i<inputStartTime.length;i++){
-        for(let j=0;j<inputStartTime[i].length;j++){
-            
-        }
-    }
-    return (
-        <div>
-            <h3>Gantt Chart</h3>
-            <Gantt startTime={1} stopTime={6} processId="P1"/>
-        </div>
+    const OuterDiv=styled.div`
+        display: flex;
+        margin-bottom: 10vh;
+    `
+    const InnerDiv=styled.div`
+        margin: 1px;
+    `
+    return(
+        <>
+        <h3>Gantt chart</h3>
+        <OuterDiv>
+            {state.ganttChart.map((ele,index)=>(
+                <InnerDiv>
+                    {ele}
+                </InnerDiv>
+            ))}
+        </OuterDiv>
+        </>
     )
 }
 

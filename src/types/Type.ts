@@ -1,10 +1,15 @@
 export type StateType={
+    Pid:number[],
     arrivalTime:number[],
     burstTime:number[],
     priority:number[],
-    timeQunatum:number
+    timeQunatum:number,
+    completionTime:number[],
+    turnAroundTime:number[],
+    waitingTime:number[],
+    ganttChart:any[],
+    schedulingType:String
 }
-
 
 type SetData={
     type:'SETDATA',
@@ -14,4 +19,8 @@ type SetData={
     timeQuantum:number
 }
 
-export type ActionType=SetData
+type SetType={
+    type:'FCFS' | 'SRTF' | 'PRIORITY' | 'ROUNDROBIN',
+}
+
+export type ActionType= SetData | SetType 

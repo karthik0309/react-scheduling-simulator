@@ -4,10 +4,16 @@ import Reducer from './Reducer'
 import {StateType} from '../types/Type'
 
 export const initialState:StateType={
+    Pid:[],
     arrivalTime:[],
     burstTime:[],
     priority:[],
-    timeQunatum:0
+    timeQunatum:0,
+    completionTime:[],
+    turnAroundTime:[],
+    waitingTime:[],
+    ganttChart:[],
+    schedulingType:''
 }
 
 const StateProvider:React.FC= ({children}) => {
@@ -16,6 +22,7 @@ const StateProvider:React.FC= ({children}) => {
     return (
         <GlobalState.Provider value={{state,dispatch}}> 
             {children}
+            {console.log(state)}
         </GlobalState.Provider>
     )
 }

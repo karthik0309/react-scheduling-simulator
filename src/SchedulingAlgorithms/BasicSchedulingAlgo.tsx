@@ -1,4 +1,4 @@
-import Gantt from "../components/Gantt";
+import Gantt from "../components/Scheduling/Gantt";
 
 const turnAroundTime=(completionTime:number[],arrivalTime:number[])=>{
     let turnAround=new Array(completionTime.length)
@@ -47,6 +47,7 @@ export const Fcfs=(arrivalTime:number[],burstTime:number[])=>{
     ganttChart[0]=<Gantt startTime={arrivalTime[0]} 
     stopTime={endTime} 
     processId="P1"/>
+
     for(let i=1;i<arrivalTime.length;i++){
         let timeDiffInArrival=arrivalTime[i]>endTime ? endTime-arrivalTime[i] :0
         let startForgantt=endTime
@@ -99,17 +100,21 @@ export const priorityScheduling=(arrivalTime:number[],burstTime:number[],priorit
 
     waitTime[0]=0
     turnTime[0]=burstTime[0]
+    completionTime[0]=turnTime[0]+arrivalTime[0]
     for(let i=1;i<arrivalTime.length;i++){
         waitTime[i]=waitTime[i-1]+burstTime[i-1]
         turnTime[i]=turnTime[i-1]+burstTime[i]
+        completionTime[i]=turnTime[i]+arrivalTime[i]
     }
     return [Pid,completionTime,turnTime,waitTime]
 }
 
 export const roundRobin=(arrivalTime:number[],burstTime:number[],timeQuantum:number)=>{
     const completionTime:number[]=new Array(arrivalTime.length)
-    const remainingTime=[...burstTime]
     let Pid:number[]=arrivalTime.map((ele,index)=>index+1)
+    sortArrays(arrivalTime,burstTime,Pid)
+
+    const remainingTime=[...burstTime]
     let sum,y=arrivalTime.length,i,count;
     for(sum=0,i=0;y!==0;){
         if(remainingTime[i]<=timeQuantum && remainingTime[i]>0){
@@ -130,7 +135,7 @@ export const roundRobin=(arrivalTime:number[],burstTime:number[],timeQuantum:num
             i=0
         }
         else if(arrivalTime[i+1]<=sum){
-            i++
+            i++ 
         }
         else{
             i=0

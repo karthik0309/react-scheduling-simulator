@@ -1,7 +1,25 @@
 import React from 'react'
-import {inputTableHead, outputTableHead } from '../constants/constants'
-import { useGlobalState } from '../GlobalState/Index'
-import TableHead from './TableHead'
+import {inputTableHead, outputTableHead } from '../../constants/constants'
+import { useGlobalState } from '../../GlobalState/Index'
+import TableHead from '../Utilities/TableHead'
+import styled from 'styled-components'
+
+const Table=styled.table`
+    width: 80vw;
+    border-collapse: collapse;
+    color: white;
+`
+const Tr=styled.tr`
+    text-align: center;
+    border: 1px solid transparent;
+    &:nth-child(odd){
+        background-color: rgb(45,52,69);
+    }
+    &:nth-child(even){
+        background-color: rgb(53,60,76);
+    }
+`
+
 const SchedulingOutPut:React.FC = () => {
 
     let {state}=useGlobalState()    
@@ -25,11 +43,11 @@ const SchedulingOutPut:React.FC = () => {
         <div>
             <h3>Scheduling Output</h3>
             {schedulingType==='ROUNDROBIN' && <p>For TimeQuantum : {timeQunatum} </p>}
-            <table style={{marginTop:"0"}}>
+            <Table>
                 <TableHead tableHead={temp}/>
                 <tbody>
                     {arrivalTime.map((ele,index)=>(
-                        <tr key={index}>
+                        <Tr key={index}>
                             <td>P[{Pid[index]}]</td>
                             <td>{ele}</td>
                             <td>{burstTime[index]}</td>
@@ -37,10 +55,10 @@ const SchedulingOutPut:React.FC = () => {
                             <td>{completionTime[index]}</td>
                             <td>{turnAroundTime[index]}</td>
                             <td>{waitingTime[index]}</td>
-                        </tr>
+                        </Tr>
                     ))}
                 </tbody>
-            </table>
+            </Table>
         </div>
     )
 }

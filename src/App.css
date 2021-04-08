@@ -3,6 +3,30 @@ body{
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center ; 
-    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+h1{
+    font-size: 56px;
+}
+input{
+    height: 40px;
+    border: none;
+    width: 97%;
+    outline: none;
+    font-size: larger;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+p{
+    font-size: larger;
 }

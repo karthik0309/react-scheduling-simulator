@@ -1,17 +1,20 @@
 import React from 'react'
-import { useGlobalState } from '../GlobalState/Index'
+import { useGlobalState } from '../../GlobalState/Index'
 import styled from 'styled-components'
+
+//Styled Components
+const OuterDiv=styled.div`
+    display: flex;
+    margin-bottom: 10vh;
+`
+const InnerDiv=styled.div`
+    margin: 1px;
+`
+
 const GanttChart:React.FC = () => {
 
     let {state}=useGlobalState()
 
-    const OuterDiv=styled.div`
-        display: flex;
-        margin-bottom: 10vh;
-    `
-    const InnerDiv=styled.div`
-        margin: 1px;
-    `
     return(
         <>
         <h3>Gantt chart</h3>

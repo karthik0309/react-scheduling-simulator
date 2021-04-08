@@ -1,4 +1,4 @@
-import {colors} from './constants'
+import {colors} from '../constants/constants'
 const setColor=(timeDifference:number)=>{
     let ganttColor,ganttWidth
     ganttWidth=timeDifference*25

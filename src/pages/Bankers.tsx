@@ -1,11 +1,11 @@
-import Header from '../components/Utilities/Header'
+import Header from "../components/Utilities/Header";
 
 const Bankers = () => {
-    return (
-        <div>
-            <Header/>            
-        </div>
-    )
-}
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+};
 
-export default Bankers
+export default Bankers;

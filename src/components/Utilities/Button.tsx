@@ -1,39 +1,44 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-type Props={
-    clickHandler:()=> void,
-    buttonClass?:any
-}
+type Props = {
+  clickHandler?: () => void;
+  outLined?: boolean;
+  width?:string
+};
 
-const InputButton=styled.button`
-    width: 110px;
-    height: 40px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 500;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    background-color: rgb(144, 202, 249);
-    border: none;
-    outline: none;
-    padding: 6px 16px;
-    margin: 8px;
-    cursor: pointer;
-    color: rgba(0,0,0,0.87);
-    letter-spacing: 0.02857em;
-    box-sizing: border-box;
-    &:hover{
-        background-color: rgba(144,202,249,0.8);
-    }
-`
 
-const Button:React.FC<Props>  = ({children,clickHandler,buttonClass}) => {
-    return (
-        <InputButton onClick={clickHandler}>
-            {children}
-        </InputButton>
-    )
-}
+const InputButton = styled.button<{outLined:boolean,width:string}>`
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 0.02857em;
+  box-sizing: border-box;
+  font-size: ${(props)=>props.outLined ? `larger` :`0.875rem`};
+  border-radius:${(props)=> props.outLined ? 10 :4}px;
+  background-color:${(props)=>props.outLined ?`#212638` :`#90caf9`};
+  border: ${(props)=>props.outLined ? `1px solid white` : `none`};
+  width:${(props)=>props.outLined ? props.width :`110px` };
+  height: ${(props)=>props.outLined ? `60px` :`40px`};
+  margin: ${(props)=>props.outLined ? `8px` : `8px`};
+  color: ${(props)=>props.outLined ? `white` :`black`};
+ 
+  &:hover {
+    background-color:${(props)=>props.outLined ? `white` :`#90caf9`};
+    color:${(props)=>props.outLined ? `#212638` : `black`}
+  }
+  
+`;
 
-export default Button
+const Button: React.FC<Props> = ({ children, clickHandler, outLined,width }) => {
+  return <InputButton 
+    outLined={outLined ? outLined :false} 
+    onClick={clickHandler}
+    width={width?width:''}>
+      {children}
+  </InputButton>;
+};
+
+export default Button;

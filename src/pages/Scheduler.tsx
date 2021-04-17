@@ -4,6 +4,7 @@ import SchedulingType from "../components/Scheduling/SchedulingType";
 import SchedulingOutPut from "../components/Scheduling/SchedulingOutPut";
 import GanttChart from "../components/Scheduling/GanttChart";
 import StateProvider from "../GlobalState/Index";
+
 const Scheduler = () => {
   return (
     <StateProvider>

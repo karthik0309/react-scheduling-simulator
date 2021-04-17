@@ -1,10 +1,8 @@
 import { StateType, ActionType } from "../types/Type";
-import {
-  Fcfs,
-  Srtf,
-  priorityScheduling,
-} from "../Utilities/SchedulingAlgorithms/BasicSchedulingAlgo";
 import RoundRobin from '../Utilities/SchedulingAlgorithms/RoundRobin'
+import Fcfs from '../Utilities/SchedulingAlgorithms/Fcfs'
+import Srtf from '../Utilities/SchedulingAlgorithms/Srtf'
+import Priority from '../Utilities/SchedulingAlgorithms/Priority'
 let schedulingContainer: any[][];
 
 const Reducer = (currState: StateType, action: ActionType) => {
@@ -43,10 +41,11 @@ const Reducer = (currState: StateType, action: ActionType) => {
         completionTime: schedulingContainer[3],
         turnAroundTime: schedulingContainer[4],
         waitingTime: schedulingContainer[5],
+        ganttChart: schedulingContainer[6],
       };
 
     case "PRIORITY":
-      schedulingContainer = priorityScheduling(
+      schedulingContainer = Priority(
         currState.arrivalTime,
         currState.burstTime,
         currState.priority

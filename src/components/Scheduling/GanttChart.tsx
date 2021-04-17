@@ -6,6 +6,8 @@ import styled from "styled-components";
 const OuterDiv = styled.div`
   display: flex;
   margin-bottom: 10vh;
+  width:80vw;
+  overflow-x:scroll;
 `;
 const InnerDiv = styled.div`
   margin: 1px;

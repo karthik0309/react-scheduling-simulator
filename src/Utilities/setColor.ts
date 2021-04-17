@@ -1,7 +1,10 @@
 import { colors } from "../constants/constants";
+
 const setColor = (timeDifference: number) => {
+
   let ganttColor, ganttWidth;
   ganttWidth = timeDifference * 25;
+  
   if (timeDifference <= 1) {
     ganttColor = colors[3];
     ganttWidth = 40;

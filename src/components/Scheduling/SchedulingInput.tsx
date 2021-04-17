@@ -1,34 +1,13 @@
 import React, { useState } from "react";
 import TableHead from "../Utilities/TableHead";
 import Button from "../Utilities/Button";
+import {Table,Tr} from '../Utilities/Table'
+import Input from '../Utilities/Input'
 import { inputTableHead } from "../../constants/constants";
 import { useGlobalState } from "../../GlobalState/Index";
 import styled from "styled-components";
 
-const Table = styled.table`
-  width: 80vw;
-  border-collapse: collapse;
-  margin-top: 18vh;
-  color: white;
-`;
-const Tr = styled.tr`
-  text-align: center;
-  border: 1px solid transparent;
-  &:nth-child(odd) {
-    background-color: rgb(45, 52, 69);
-  }
-  &:nth-child(even) {
-    background-color: rgb(53, 60, 76);
-  }
-`;
 
-const Input = styled.input`
-  width: 50px;
-  height: 30px;
-  border-radius: 20px;
-  border: 1px solid white;
-  margin: 4px;
-`;
 const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -109,8 +88,8 @@ const SchedulingInput: React.FC = () => {
     });
   };
   const handleSubmit = () => {
-    if (arrivalTime.length <= 1) {
-      alert("Input more then one row");
+    if (arrivalTime.length <= 3) {
+      alert("Input more then three rows");
       return;
     }
     dispatch({
@@ -133,27 +112,31 @@ const SchedulingInput: React.FC = () => {
                 <p>P[{index + 1}]</p>
               </td>
               <td>
-                <input
+                <Input
                   type="number"
+                  min="0"
                   placeholder="enter arrival time"
                   onChange={(event) => handleArrivalTime(event, index)}
                   required
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
+                  min="0"
                   placeholder="enter burst time"
                   onChange={(event) => handleBurstTime(event, index)}
                   required
                 />
               </td>
               <td>
-                <input
+                <Input
                   type="number"
+                  min="0"
                   placeholder="enter priority"
                   onChange={(event) => handlePriority(event, index)}
                   required
+
                 />
               </td>
             </Tr>
@@ -171,6 +154,11 @@ const SchedulingInput: React.FC = () => {
           id="timeQuant"
           required
           onChange={(event) => handleTimeQuantum(event)}
+          width="50px"
+          height="30px"
+          border="1px solid white"
+          borderRadius="20px"
+          margin="4px"
         />
       </div>
       <ButtonDiv>

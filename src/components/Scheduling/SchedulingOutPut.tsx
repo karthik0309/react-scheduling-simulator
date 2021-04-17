@@ -1,24 +1,9 @@
 import React from "react";
 import { inputTableHead, outputTableHead } from "../../constants/constants";
 import { useGlobalState } from "../../GlobalState/Index";
+import {Table,Tr} from '../Utilities/Table'
 import TableHead from "../Utilities/TableHead";
-import styled from "styled-components";
 
-const Table = styled.table`
-  width: 80vw;
-  border-collapse: collapse;
-  color: white;
-`;
-const Tr = styled.tr`
-  text-align: center;
-  border: 1px solid transparent;
-  &:nth-child(odd) {
-    background-color: rgb(45, 52, 69);
-  }
-  &:nth-child(even) {
-    background-color: rgb(53, 60, 76);
-  }
-`;
 
 const SchedulingOutPut: React.FC = () => {
   let { state } = useGlobalState();

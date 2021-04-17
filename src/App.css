@@ -9,16 +9,7 @@ body {
 h1 {
   font-size: 56px;
 }
-input {
-  height: 40px;
-  border: none;
-  width: 97%;
-  outline: none;
-  font-size: larger;
-  text-align: center;
-  background-color: transparent;
-  color: white;
-}
+
 input[type="number"] {
   -moz-appearance: textfield;
 }

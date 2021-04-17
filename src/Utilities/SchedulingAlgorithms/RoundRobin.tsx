@@ -1,6 +1,7 @@
 import queue from '../Queue'
 import Gantt from "../../components/Scheduling/Gantt"
-import {turnAroundTime,waitingTime} from './BasicSchedulingAlgo'
+import {turnAroundTime,waitingTime,sortArrays} from './BasicFunctions'
+
 const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=>{
     
     //copy the arival and burst time because those are state variable and will be mutated direclty
@@ -11,6 +12,7 @@ const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=
     const completetionTime:number[]=new Array(arrTime.length)
     let ganttChart:any[]=[]
 
+    sortArrays(arrTime,burTime,Pid)
 
     let i=0,nexVal=arrTime[0],count=0
     for(i=0;i<arrTime.length && arrTime[i]<=nexVal;i++){
@@ -20,7 +22,7 @@ const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=
         let temp=queue.Dequeue()
         
         if(remainTime[temp] >= timeQuantum){
-            ganttChart[count]=(<Gantt processId={`P${temp}`} 
+            ganttChart[count]=(<Gantt processId={`P[${temp+1}]`} 
                             startTime={nexVal} 
                             stopTime={nexVal + timeQuantum} />)
             count++
@@ -28,7 +30,7 @@ const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=
             remainTime[temp]-=timeQuantum
         }
         else{
-            ganttChart[count]=(<Gantt processId={`P${temp}`} 
+            ganttChart[count]=(<Gantt processId={`P[${temp+1}]`} 
                             startTime={nexVal} 
                             stopTime={nexVal +remainTime[temp]} />)
             count++

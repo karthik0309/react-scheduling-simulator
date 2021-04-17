@@ -31,7 +31,7 @@ const SchedulingOutPut: React.FC = () => {
       {schedulingType === "ROUNDROBIN" && (
         <p>For TimeQuantum : {timeQunatum} </p>
       )}
-      <Table>
+      <Table margin="0">
         <TableHead tableHead={temp} />
         <tbody>
           {arrivalTime.map((ele, index) => (

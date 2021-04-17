@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-export const Table = styled.table`
+export const Table = styled.table<{margin?:string}>`
   width: 80vw;
   border-collapse: collapse;
-  margin-top: 18vh;
+  margin-top:${props=>props.margin ? props.margin : "18vh" } ;
   color: white;
 `;
 export const Tr = styled.tr`

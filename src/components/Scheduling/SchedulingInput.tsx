@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGlobalState } from "../../GlobalState/Index";
+import { useGlobalState } from "../../GlobalState/Scheduler/Index";
 
 import TableHead from "../Utilities/TableHead";
 import Button from "../Utilities/Button";
@@ -28,10 +28,7 @@ const SchedulingInput: React.FC = () => {
   const { arrivalTime, burstTime, priority, timeQuantum } = times;
 
   //Event handlers
-  const handleArrivalTime = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
+  const handleArrivalTime = (event: React.ChangeEvent<HTMLInputElement>,index: number) => {
     let updatedArrival = [...arrivalTime];
     updatedArrival[index] = parseInt(event.target.value);
     setTimes({ ...times, arrivalTime: updatedArrival });
@@ -155,7 +152,6 @@ const SchedulingInput: React.FC = () => {
         <Button clickHandler={handleDelete}>Delete</Button>
       </Wrapper>
       <div>
-        <label htmlFor="timeQuant">Time Quantum:</label>
         <Input
           type="number"
           id="timeQuant"
@@ -165,6 +161,7 @@ const SchedulingInput: React.FC = () => {
           border="1px solid white"
           borderRadius="20px"
           margin="4px"
+          label="Time Quantum:"
         />
       </div>
       <Wrapper justifyContent="center">

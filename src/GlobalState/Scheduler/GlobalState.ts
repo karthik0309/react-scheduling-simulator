@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { StateType, ActionType } from "../types/Type";
+import { StateType, ActionType } from "../../types/Type";
 
 type ContextType = {
   state: StateType;

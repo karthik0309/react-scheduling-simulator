@@ -1,7 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import GlobalState from "./GlobalState";
 import Reducer from "./Reducer";
-import { StateType } from "../types/Type";
+import { StateType } from "../../types/Type";
 
 export const initialState: StateType = {
   Pid: [],
@@ -21,7 +21,6 @@ const StateProvider: React.FC = ({ children }) => {
   return (
     <GlobalState.Provider value={{ state, dispatch }}>
       {children}
-      {console.log(state)}
     </GlobalState.Provider>
   );
 };

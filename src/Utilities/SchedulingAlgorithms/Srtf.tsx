@@ -1,4 +1,3 @@
-import Gantt from "../../components/Scheduling/Gantt"
 import {turnAroundTime,waitingTime,sortArrays} from './BasicFunctions'
 
 const Srtf = (arrivalTime: number[], burstTime: number[]) => {
@@ -14,7 +13,6 @@ const Srtf = (arrivalTime: number[], burstTime: number[]) => {
     for (let time = 0; remain !== arrTime.length; time++) {
       
         let smallest = remainingTime.length - 1;
-        let startTime=arrTime[0]
 
         for (let i = 0; i < arrTime.length; i++) {
             if (arrTime[i] <= time &&
@@ -23,7 +21,6 @@ const Srtf = (arrivalTime: number[], burstTime: number[]) => {
             ){
                 smallest = i;
                 //ganttChart[i]=(<Gantt startTime={startTime} stopTime={time} processId={`P[${Pid[i]}]`}/>)
-                startTime=time
             }
         }
         remainingTime[smallest]--;

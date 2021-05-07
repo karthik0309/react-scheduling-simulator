@@ -22,7 +22,7 @@ const InputButton = styled.button<Props>`
   border: ${(props)=>props.outLined ? `1px solid white` : `none`};
   width:${(props)=>props.outLined ? props.width :`110px` };
   height: ${(props)=>props.outLined ? `70px` :`40px`};
-  margin: ${(props)=>props.outLined ? `8px` : `8px`};
+  margin: ${(props)=>props.outLined ? `8px` : `8px 8px 0 0`};
   color: ${(props)=>props.outLined ? `white` :`black`};
  
   &:hover {

@@ -1,6 +1,6 @@
 import React from "react";
 import { inputTableHead, outputTableHead } from "../../constants/constants";
-import { useGlobalState } from "../../GlobalState/Index";
+import { useGlobalState } from "../../GlobalState/Scheduler/Index";
 import {Table,Tr} from '../Utilities/Table'
 import TableHead from "../Utilities/TableHead";
 

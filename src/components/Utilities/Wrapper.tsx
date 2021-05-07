@@ -23,7 +23,15 @@ const Container =styled.div<WrapperType>`
     overflow:${props=>props.overflow};
     background:${props=>props.color};
 `
-const Wrapper:React.FC<WrapperType> = ({children,column,margin,height,width,justifyContent,alignItems,overflow,color}) => {
+const Wrapper:React.FC<WrapperType> = ({children,
+    column,
+    margin,
+    height,
+    width,
+    justifyContent,
+    alignItems,
+    overflow,
+    color}) => {
     return(
         <Container 
         column={column} 

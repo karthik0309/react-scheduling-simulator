@@ -24,3 +24,25 @@ type SetType = {
 };
 
 export type ActionType = SetData | SetType;
+export type BankerState={
+  alloc:{A:number[],B:number[],C:number[]}
+  max:{A:number[],B:number[],C:number[]}
+  instance:{A:number,B:number,C:number}
+  available:{A:number,B:number,C:number}
+  safeProcess:String[]
+  error:String
+}
+
+type setBankersData={
+  type:"SETDATA";
+  instance:{A:number,B:number,C:number}
+  alloc:{A:number[],B:number[],C:number[]}
+  max:{A:number[],B:number[],C:number[]}
+}
+
+type getBankersData={
+  type:"GETDATA";
+}
+
+
+export type BanckerAction =getBankersData | setBankersData 

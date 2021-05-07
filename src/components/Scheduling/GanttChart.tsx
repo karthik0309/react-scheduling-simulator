@@ -1,5 +1,5 @@
 import React from "react";
-import { useGlobalState } from "../../GlobalState/Index";
+import { useGlobalState } from "../../GlobalState/Scheduler/Index";
 import Wrapper from "../Utilities/Wrapper";
 
 const GanttChart: React.FC = () => {

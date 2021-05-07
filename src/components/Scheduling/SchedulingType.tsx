@@ -1,6 +1,6 @@
 import React from "react";
 import { SchedulingTypes } from "../../constants/constants";
-import { useGlobalState } from "../../GlobalState/Index";
+import { useGlobalState } from "../../GlobalState/Scheduler/Index";
 import styled from "styled-components";
 
 //Styled Components

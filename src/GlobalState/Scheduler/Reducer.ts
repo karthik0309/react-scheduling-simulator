@@ -1,8 +1,8 @@
-import { StateType, ActionType } from "../types/Type";
-import RoundRobin from '../Utilities/SchedulingAlgorithms/RoundRobin'
-import Fcfs from '../Utilities/SchedulingAlgorithms/Fcfs'
-import Srtf from '../Utilities/SchedulingAlgorithms/Srtf'
-import Priority from '../Utilities/SchedulingAlgorithms/Priority'
+import { StateType, ActionType } from "../../types/Type";
+import RoundRobin from '../../Utilities/SchedulingAlgorithms/RoundRobin'
+import Fcfs from '../../Utilities/SchedulingAlgorithms/Fcfs'
+import Srtf from '../../Utilities/SchedulingAlgorithms/Srtf'
+import Priority from '../../Utilities/SchedulingAlgorithms/Priority'
 let schedulingContainer: any[][];
 
 const Reducer = (currState: StateType, action: ActionType) => {

@@ -1,19 +1,16 @@
+import Button from './components/Utilities/Button'
+import Wrapper from "./components/Utilities/Wrapper";
+
 import { Link } from "react-router-dom";
 import Logo from "./assets/Logo.png";
-import styled from "styled-components";
-import "./App.css";
-import Button from './components/Utilities/Button'
 
-const Div = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-`;
+import "./App.css";
+
+
 const App = () => {
   return (
-    <Div>
-      <Div>
+    <Wrapper justifyContent="space-between" alignItems="center" column={true}>
+      <Wrapper justifyContent="space-between" alignItems="center" column={true}>
         <h1>Os Sim</h1>
         <img
           src={Logo}
@@ -21,7 +18,7 @@ const App = () => {
           style={{ width: "100px", height: "100px" }}
         />
         <p>Understand Os concepts by simulation</p>
-      </Div>
+      </Wrapper>
 
       <Link to="/CpuSchedulingAlgorithms">
         <Button outLined={true} width="40vw">
@@ -40,7 +37,7 @@ const App = () => {
           Resource Allocation graph
         </Button>
       </Link>
-    </Div>
+    </Wrapper>
   );
 };
 

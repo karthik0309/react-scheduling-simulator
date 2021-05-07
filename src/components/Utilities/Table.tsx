@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
-export const Table = styled.table<{margin?:string}>`
+export const Table = styled.table`
   width: 80vw;
   border-collapse: collapse;
-  margin-top:${props=>props.margin ? props.margin : "18vh" } ;
   color: white;
+  min-width:400px;
+  
 `;
 export const Tr = styled.tr`
   text-align: center;

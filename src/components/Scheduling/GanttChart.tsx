@@ -1,29 +1,19 @@
 import React from "react";
 import { useGlobalState } from "../../GlobalState/Index";
-import styled from "styled-components";
-
-//Styled Components
-const OuterDiv = styled.div`
-  display: flex;
-  margin-bottom: 10vh;
-  width:80vw;
-  overflow-x:scroll;
-`;
-const InnerDiv = styled.div`
-  margin: 1px;
-`;
+import Wrapper from "../Utilities/Wrapper";
 
 const GanttChart: React.FC = () => {
+  
   let { state } = useGlobalState();
 
   return (
     <>
       <h3>Gantt chart</h3>
-      <OuterDiv>
+      <Wrapper width="80vw" margin="0 0 10vh 0" overflow="scroll">
         {state.ganttChart.map((ele, index) => (
-          <InnerDiv key={index}>{ele}</InnerDiv>
+          <div key={index} style={{margin:"1px"}}>{ele}</div>
         ))}
-      </OuterDiv>
+      </Wrapper>
     </>
   );
 };

@@ -2,13 +2,10 @@ import React from "react";
 import { SchedulingTypes } from "../../constants/constants";
 import { useGlobalState } from "../../GlobalState/Index";
 import styled from "styled-components";
+
 //Styled Components
-const MainContainer = styled.div`
-  width: 80vw;
-`;
 const InnerContainer = styled.div`
   width: 100%;
-  
 `;
 const Button = styled.button`
   width: 25%;
@@ -34,7 +31,6 @@ const Button = styled.button`
   }
   @media (max-width: 768px) {
     font-size: small;
-    width: fit-content;
   }
 `;
 
@@ -67,7 +63,7 @@ const SchedulingType: React.FC = () => {
   };
 
   return (
-    <MainContainer>
+    <div>
       <h3>Scheduling types</h3>
       <InnerContainer>
         {SchedulingTypes.map((ele, index) => (
@@ -82,7 +78,7 @@ const SchedulingType: React.FC = () => {
           </Button>
         ))}
       </InnerContainer>
-    </MainContainer>
+    </div>
   );
 };
 

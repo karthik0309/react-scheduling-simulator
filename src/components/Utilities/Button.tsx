@@ -8,7 +8,7 @@ type Props = {
 };
 
 
-const InputButton = styled.button<{outLined:boolean,width:string}>`
+const InputButton = styled.button<Props>`
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -21,7 +21,7 @@ const InputButton = styled.button<{outLined:boolean,width:string}>`
   background-color:${(props)=>props.outLined ?`#212638` :`#90caf9`};
   border: ${(props)=>props.outLined ? `1px solid white` : `none`};
   width:${(props)=>props.outLined ? props.width :`110px` };
-  height: ${(props)=>props.outLined ? `60px` :`40px`};
+  height: ${(props)=>props.outLined ? `70px` :`40px`};
   margin: ${(props)=>props.outLined ? `8px` : `8px`};
   color: ${(props)=>props.outLined ? `white` :`black`};
  

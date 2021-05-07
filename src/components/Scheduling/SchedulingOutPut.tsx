@@ -4,7 +4,6 @@ import { useGlobalState } from "../../GlobalState/Index";
 import {Table,Tr} from '../Utilities/Table'
 import TableHead from "../Utilities/TableHead";
 
-
 const SchedulingOutPut: React.FC = () => {
   let { state } = useGlobalState();
 
@@ -31,7 +30,7 @@ const SchedulingOutPut: React.FC = () => {
       {schedulingType === "ROUNDROBIN" && (
         <p>For TimeQuantum : {timeQunatum} </p>
       )}
-      <Table margin="0">
+      <Table>
         <TableHead tableHead={temp} />
         <tbody>
           {arrivalTime.map((ele, index) => (

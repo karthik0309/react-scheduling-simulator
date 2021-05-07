@@ -22,7 +22,7 @@ const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=
         let temp=queue.Dequeue()
         
         if(remainTime[temp] >= timeQuantum){
-            ganttChart[count]=(<Gantt processId={`P[${temp+1}]`} 
+            ganttChart[count]=(<Gantt processId={`P[${Pid[temp+1]}]`} 
                             startTime={nexVal} 
                             stopTime={nexVal + timeQuantum} />)
             count++
@@ -30,7 +30,7 @@ const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=
             remainTime[temp]-=timeQuantum
         }
         else{
-            ganttChart[count]=(<Gantt processId={`P[${temp+1}]`} 
+            ganttChart[count]=(<Gantt processId={`P[${Pid[temp]}]`} 
                             startTime={nexVal} 
                             stopTime={nexVal +remainTime[temp]} />)
             count++

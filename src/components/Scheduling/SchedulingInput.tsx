@@ -1,17 +1,15 @@
 import React, { useState } from "react";
+import { useGlobalState } from "../../GlobalState/Index";
+
 import TableHead from "../Utilities/TableHead";
 import Button from "../Utilities/Button";
-import {Table,Tr} from '../Utilities/Table'
 import Input from '../Utilities/Input'
+import Wrapper from "../Utilities/Wrapper";
+import Paragraph from "../Utilities/Paragraph";
+import {Table,Tr} from '../Utilities/Table'
+
 import { inputTableHead } from "../../constants/constants";
-import { useGlobalState } from "../../GlobalState/Index";
-import styled from "styled-components";
 
-
-const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 const SchedulingInput: React.FC = () => {
   //Global state
@@ -24,6 +22,7 @@ const SchedulingInput: React.FC = () => {
     priority: [0],
     timeQuantum: 0,
   });
+  const [errors,setErrors]=useState('')
 
   //Destructuring
   const { arrivalTime, burstTime, priority, timeQuantum } = times;
@@ -87,11 +86,25 @@ const SchedulingInput: React.FC = () => {
       priority: updatedPriority,
     });
   };
+  const allEqual=(array:number[])=>{
+    return array.every(val => val === array[0]);
+  }
   const handleSubmit = () => {
     if (arrivalTime.length <= 3) {
-      alert("Input more then three rows");
+      setErrors("Error: Input more then three rows");
       return;
     }
+    for(let i=0;i<arrivalTime.length;i++){
+      if(arrivalTime[i]<0 || burstTime[i]<0 || priority[i]<0 || timeQuantum<0){
+        setErrors("Error: No input should be negative")
+        return;
+      }
+      if(allEqual(arrivalTime) || allEqual(burstTime) || allEqual(priority)){
+        setErrors("Error: Input all fields or All the inputs are Equal")
+        return;
+      }
+    }
+    setErrors('')
     dispatch({
       type: "SETDATA",
       arrivalTime,
@@ -103,6 +116,7 @@ const SchedulingInput: React.FC = () => {
 
   return (
     <div>
+      <Paragraph>{errors}</Paragraph>
       <Table>
         <TableHead tableHead={inputTableHead} />
         <tbody>
@@ -114,45 +128,37 @@ const SchedulingInput: React.FC = () => {
               <td>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="enter arrival time"
                   onChange={(event) => handleArrivalTime(event, index)}
-                  required
                 />
               </td>
               <td>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="enter burst time"
                   onChange={(event) => handleBurstTime(event, index)}
-                  required
                 />
               </td>
               <td>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="enter priority"
                   onChange={(event) => handlePriority(event, index)}
-                  required
-
                 />
               </td>
             </Tr>
           ))}
         </tbody>
       </Table>
-      <ButtonDiv>
+      <Wrapper justifyContent="center">
         <Button clickHandler={handleRows}>Add row</Button>
         <Button clickHandler={handleDelete}>Delete</Button>
-      </ButtonDiv>
+      </Wrapper>
       <div>
         <label htmlFor="timeQuant">Time Quantum:</label>
         <Input
           type="number"
           id="timeQuant"
-          required
           onChange={(event) => handleTimeQuantum(event)}
           width="50px"
           height="30px"
@@ -161,9 +167,9 @@ const SchedulingInput: React.FC = () => {
           margin="4px"
         />
       </div>
-      <ButtonDiv>
+      <Wrapper justifyContent="center">
         <Button clickHandler={handleSubmit}>Submit</Button>
-      </ButtonDiv>
+      </Wrapper>
     </div>
   );
 };

@@ -1,21 +1,20 @@
 import React ,{useState} from 'react'
 import {useGlobalState} from '../../GlobalState/Bankers/Index'
-import TableHead from '../Utilities/TableHead'
 import Wrapper from '../Utilities/Wrapper'
-import Input from '../Utilities/Input'
 import Button from '../Utilities/Button'
 import Paragraph from '../Utilities/Paragraph'
-import {Table,Tr} from '../Utilities/Table'
+import Instance from './Instance'
+import {TableInput} from '../Utilities/Table'
 import {bankersTableHead} from '../../constants/constants'
-import { BankerState } from '../../types/Type'
+
 const initialValues={
-    alloc:{A:[0,0,0,0,0],B:[0,0,0,0,0],C:[0,0,0,0,0]},
-    max:{A:[0,0,0,0,0],B:[0,0,0,0,0],C:[0,0,0,0,0]}
+    alloc:[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
+    max:[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
 }
-const instanceValues={
-    A:0,B:0,C:0
-}
+const instanceValues=[0,0,0]
+
 const names=["A","B","C"]
+
 const InputTable = () => {
 
     const [allocation,setAllocation]=useState(initialValues.alloc)
@@ -24,40 +23,38 @@ const InputTable = () => {
     const [error,setError]=useState('')
     const {dispatch} =useGlobalState()
 
-    const handleAlloc=(event: React.ChangeEvent<HTMLInputElement>,index:number)=>{
-        const {name,value}=event.target
-        const updatedAlloc:any={...allocation}
+    const handleAlloc=(event: React.ChangeEvent<HTMLInputElement>,index:number,indx:number)=>{
+        const {value}=event.target
+        const updatedAlloc={...allocation}
         if(parseInt(value)<0){
             setError("Error: Input cant be negative")
             return;
         }
         setError('')
-        updatedAlloc[name][index]=parseInt(value) 
+        updatedAlloc[index][indx]=parseInt(value) 
         setAllocation(updatedAlloc)
     }
-    const handleMax=(event: React.ChangeEvent<HTMLInputElement>,index:number)=>{
-        const {name,value}=event.target
-        const updatedMax:any={...maximum}
+    const handleMax=(event: React.ChangeEvent<HTMLInputElement>,index:number,indx:number)=>{
+        const {value}=event.target
+        const updatedMax={...maximum}
         if(parseInt(value)<0){
             setError("Error: Input cant be negative")
             return;
         }
         setError('')
-        updatedMax[name][index]=parseInt(value) 
-        console.log(name)
+        updatedMax[index][indx]=parseInt(value) 
         setMaximum(updatedMax)
     }
-    const handleChange=(event: React.ChangeEvent<HTMLInputElement>)=>{
-        const { id, value } = event.target;
+    const handleChange=(event: React.ChangeEvent<HTMLInputElement>,index:number)=>{
+        const { value } = event.target;
         if(parseInt(value)<0){
             setError("Error: input cant be negative")
             return;
         }
         setError('')
-        setValues({
-            ...values,
-            [id]: parseInt(value),
-          });
+        const updatedInstance:any=[...values]
+        updatedInstance[index]=parseInt(value)
+        setValues(updatedInstance)
     }
     
     const handleSubmit=()=>{
@@ -67,75 +64,34 @@ const InputTable = () => {
         instance:values})
     }
 
-    const instance=<Wrapper >
-    {Object.keys(instanceValues).map((ele,index)=>(
-        <div key={index}>
-            <Input
-            width="50px"
-            height="30px"
-            border="1px solid white"
-            borderRadius="20px"
-            margin="10px"
-            label={`Instance ${ele}:`}
-            id={ele}
-            onChange={e=>handleChange(e)}
-            />
-        </div>
-    ))}
-    </Wrapper>
-
     return (
         <Wrapper column={true}>
             {error!=='' ?<Paragraph>{error}</Paragraph> : null}
-            {instance}
+            <Instance handleChange={handleChange}/>
             <Wrapper>
-            <Wrapper column={true} margin="0 50px 0 0">
-                <p style={{textAlign:"center"}}>Allocation</p>
-                <Table width="35vw" minWidth="300px">
-                    <TableHead tableHead={bankersTableHead}/>
-                    <tbody>
-                        {initialValues.alloc.A.map((ele,index)=>(
-                            <Tr key={index}>
-                                <td>P{index+1}</td>
-                                {names.map((inp,indx)=>(
-                                    <td key={index+names[indx]}>
-                                        <Input 
-                                        type="number" 
-                                        name={inp}
-                                        onChange={(e)=>handleAlloc(e,index)}
-                                        />
-                                    </td>
-                                ))}
-                            </Tr>
-                        ))}
-                    </tbody>
-                </Table>  
-            </Wrapper>
+                <Wrapper column={true} margin="0 50px 0 0">
+                    <TableInput 
+                    label="Allocation" 
+                    thead={bankersTableHead} 
+                    handleChange={handleAlloc}
+                    rows={initialValues.alloc}
+                    width="35vw"
+                    minWidth="300px"
+                    columns={names}/>
+                </Wrapper>
 
-            <Wrapper column={true}>
-                <p style={{textAlign:"center"}}>Max</p>
-                <Table width="35vw" minWidth="300px">
-                    <TableHead tableHead={bankersTableHead}/>
-                    <tbody>
-                        {initialValues.max.A.map((ele,index)=>(
-                            <Tr key={index}>
-                                <td>P{index+1}</td>
-                                {names.map((inp,indx)=>(
-                                    <td key={index+names[indx]+"08d"}>
-                                        <Input 
-                                        type="number" 
-                                        name={inp}
-                                        onChange={(e)=>handleMax(e,index)}
-                                        />
-                                    </td>
-                                ))}
-                            </Tr>
-                        ))}
-                    </tbody>
-                </Table>  
+                <Wrapper column={true}>
+                    <TableInput 
+                    label="Max" 
+                    thead={bankersTableHead} 
+                    handleChange={handleMax}
+                    rows={initialValues.max}
+                    width="35vw"
+                    minWidth="300px"
+                    columns={names}/>
+                </Wrapper>
             </Wrapper>
-        </Wrapper>
-        <Button clickHandler={handleSubmit}>Submit</Button>
+            <Button clickHandler={handleSubmit}>Submit</Button>
         </Wrapper>
     )
 }

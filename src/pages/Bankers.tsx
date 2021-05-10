@@ -8,7 +8,11 @@ const Bankers = () => {
   return (
     <StateProvider>
       <Header />
-      <Wrapper  width="100vw" margin="18vh 0 0 20vw" column={true} alignItems="flex-start">
+      <Wrapper  width="100vw" 
+      margin="18vh 0 0 20vw" 
+      column={true} 
+      alignItems="flex-start"
+      mediaMargin="18vh 0 0 8vw">
         <InputTable/>
         <OutPutTable/>
       </Wrapper>

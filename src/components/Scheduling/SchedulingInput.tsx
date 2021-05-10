@@ -1,59 +1,40 @@
 import React, { useState } from "react";
 import { useGlobalState } from "../../GlobalState/Scheduler/Index";
-
-import TableHead from "../Utilities/TableHead";
 import Button from "../Utilities/Button";
 import Input from '../Utilities/Input'
 import Wrapper from "../Utilities/Wrapper";
 import Paragraph from "../Utilities/Paragraph";
-import {Table,Tr} from '../Utilities/Table'
+import {TableInput} from '../Utilities/Table'
 
 import { inputTableHead } from "../../constants/constants";
 
+const columns=["arrivalTime","burstTime","priority"]
+
+const initialValues={
+  arrivalTime:[0],
+  burstTime:[0],
+  priority:[0]
+}
 
 const SchedulingInput: React.FC = () => {
-  //Global state
+  
   const { dispatch } = useGlobalState();
 
-  //state
-  const [times, setTimes] = useState({
-    arrivalTime: [0],
-    burstTime: [0],
-    priority: [0],
-    timeQuantum: 0,
-  });
+  const [times, setTimes] = useState(initialValues);
   const [errors,setErrors]=useState('')
+  const [timeQuantum,setTimeQuantum]=useState(0)
 
-  //Destructuring
-  const { arrivalTime, burstTime, priority, timeQuantum } = times;
+  const { arrivalTime, burstTime, priority } = times;
 
-  //Event handlers
-  const handleArrivalTime = (event: React.ChangeEvent<HTMLInputElement>,index: number) => {
-    let updatedArrival = [...arrivalTime];
-    updatedArrival[index] = parseInt(event.target.value);
-    setTimes({ ...times, arrivalTime: updatedArrival });
-  };
-
-  const handleBurstTime = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    let updatedBurst = [...burstTime];
-    updatedBurst[index] = parseInt(event.target.value);
-    setTimes({ ...times, burstTime: updatedBurst });
-  };
-
-  const handlePriority = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    let updatedPriority = [...priority];
-    updatedPriority[index] = parseInt(event.target.value);
-    setTimes({ ...times, priority: updatedPriority });
+  const handleTime = (event: React.ChangeEvent<HTMLInputElement>,index: number) => {
+    const {value,name}=event.target
+    let updatedArrival:any = {...times};
+    updatedArrival[name][index] = parseInt(value);
+    setTimes(updatedArrival);
   };
 
   const handleTimeQuantum = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTimes({ ...times, timeQuantum: parseInt(event.target.value) });
+    setTimeQuantum(parseInt(event.target.value));
   };
 
   const handleRows = () => {
@@ -83,9 +64,11 @@ const SchedulingInput: React.FC = () => {
       priority: updatedPriority,
     });
   };
+
   const allEqual=(array:number[])=>{
     return array.every(val => val === array[0]);
   }
+
   const handleSubmit = () => {
     if (arrivalTime.length <= 3) {
       setErrors("Error: Input more then three rows");
@@ -112,47 +95,22 @@ const SchedulingInput: React.FC = () => {
   };
 
   return (
-    <div>
-      <Paragraph>{errors}</Paragraph>
-      <Table>
-        <TableHead tableHead={inputTableHead} />
-        <tbody>
-          {arrivalTime.map((ele, index) => (
-            <Tr key={index}>
-              <td>
-                <p>P[{index + 1}]</p>
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  placeholder="enter arrival time"
-                  onChange={(event) => handleArrivalTime(event, index)}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  placeholder="enter burst time"
-                  onChange={(event) => handleBurstTime(event, index)}
-                />
-              </td>
-              <td>
-                <Input
-                  type="number"
-                  placeholder="enter priority"
-                  onChange={(event) => handlePriority(event, index)}
-                />
-              </td>
-            </Tr>
-          ))}
-        </tbody>
-      </Table>
-      <Wrapper justifyContent="center">
-        <Button clickHandler={handleRows}>Add row</Button>
-        <Button clickHandler={handleDelete}>Delete</Button>
-      </Wrapper>
-      <div>
-        <Input
+    <React.Fragment>
+        <Paragraph>{errors}</Paragraph>
+        <TableInput 
+        thead={inputTableHead}
+        rows={arrivalTime} 
+        columns={columns} 
+        handleChange={handleTime} 
+        minWidth="400px"
+        width="80vw"
+        placeHolder={columns}/>
+        <Wrapper justifyContent="center">
+          <Button clickHandler={handleRows}>Add row</Button>
+          <Button clickHandler={handleDelete}>Delete</Button>
+        </Wrapper>
+        <div>
+          <Input
           type="number"
           id="timeQuant"
           onChange={(event) => handleTimeQuantum(event)}
@@ -162,12 +120,12 @@ const SchedulingInput: React.FC = () => {
           borderRadius="20px"
           margin="4px"
           label="Time Quantum:"
-        />
-      </div>
-      <Wrapper justifyContent="center">
-        <Button clickHandler={handleSubmit}>Submit</Button>
-      </Wrapper>
-    </div>
+          />
+        </div>
+        <Wrapper justifyContent="center">
+          <Button clickHandler={handleSubmit}>Submit</Button>
+        </Wrapper>
+    </React.Fragment>
   );
 };
 

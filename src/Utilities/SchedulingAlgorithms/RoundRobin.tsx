@@ -4,7 +4,6 @@ import {turnAroundTime,waitingTime,sortArrays} from './BasicFunctions'
 
 const roundRobin=(arrivalTime:number[], burstTime:number[], timeQuantum:number)=>{
     
-    //copy the arival and burst time because those are state variable and will be mutated direclty
     const arrTime:number[]=[...arrivalTime]
     const remainTime:number[]=[...burstTime]
     const burTime:number[]=[...burstTime]

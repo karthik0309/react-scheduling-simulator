@@ -8,7 +8,7 @@ type Props = {
 };
 
 
-const InputButton = styled.button<Props>`
+export const InputButton = styled.button<Props>`
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 500;
   text-transform: uppercase;

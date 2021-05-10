@@ -6,10 +6,11 @@ type ContextType = {
     dispatch: React.Dispatch<BanckerAction>;
 };
 const initialState: BankerState = {
-    alloc:{A:[],B:[],C:[]},
-    max:{A:[],B:[],C:[]},
-    instance:{A:0,B:0,C:0},
-    available:{A:0,B:0,C:0},
+    alloc:[][3],
+    max:[][3],
+    instance:[],
+    available:[],
+    need:[][3],
     safeProcess:[],
     error:''
 };

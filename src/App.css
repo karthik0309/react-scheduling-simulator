@@ -14,16 +14,7 @@ p,label{
   font-size: larger;
 }
 
-@media (max-width:768px){
-  body{
-    overflow: scroll;
-  }
-}
-@media (max-width:400px){
-  body{
-    margin-left: 15vw;
-  }
-}
+
 input[type="number"] {
   -moz-appearance: textfield;
 }

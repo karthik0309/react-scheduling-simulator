@@ -1,18 +1,22 @@
+import React from 'react'
+import {useGlobalState} from '../../GlobalState/Bankers/Index'
 import {Table,Tr} from '../Utilities/Table'
 import TableHead from '../Utilities/TableHead'
 import Wrapper from '../Utilities/Wrapper'
 import {bankersTableHead,Available} from '../../constants/constants'
 
 const OutPutTable = () => {
+    const {state} =useGlobalState()
     return (
-        <Wrapper>
+        <React.Fragment>
+            <Wrapper>
             <Wrapper column={true}  margin="0 50px 0 0">
                 <p style={{textAlign:"center"}}>Need</p>
                 <Table width="35vw" minWidth="300px">
                     <TableHead tableHead={bankersTableHead}/>
                     <tbody>
                         <Tr>
-
+                            
                         </Tr>
                     </tbody>
                 </Table>
@@ -29,6 +33,7 @@ const OutPutTable = () => {
                 </Table>
             </Wrapper>
         </Wrapper>
+        </React.Fragment>
     )
 }
 

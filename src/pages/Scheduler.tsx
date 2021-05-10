@@ -10,7 +10,7 @@ const Scheduler = () => {
   return (
     <StateProvider>
       <Header />
-      <Wrapper column={true} margin="18vh 0 0 ">
+      <Wrapper column={true} margin="18vh 0 0 " mediaMargin="18vh 0 0 10vw"> 
         <SchedulingInput />
         <SchedulingType />
         <SchedulingOutPut />

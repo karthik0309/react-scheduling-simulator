@@ -1,7 +1,6 @@
 import Gantt from "../../components/Scheduling/Gantt";
 import {sortArrays,turnAroundTime,waitingTime} from './BasicFunctions'
 const Fcfs = (arrivalTime: number[], burstTime: number[]) => {
-    //copy into another var,coz while sorting it will sort the state directly
     let arrTime = [...arrivalTime];
     let burTime = [...burstTime];
     let completionTime: number[] = new Array(arrivalTime.length);
@@ -26,7 +25,6 @@ const Fcfs = (arrivalTime: number[], burstTime: number[]) => {
       endTime = endTime + burTime[i] + timeDiffInArrival;
       completionTime[i] = endTime;
   
-      //maintain the ganttArray
       ganttChart[i] = (
         <Gantt
           startTime={startForgantt}

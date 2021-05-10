@@ -69,6 +69,7 @@ const SchedulingType: React.FC = () => {
         {SchedulingTypes.map((ele, index) => (
           <Button
             key={index}
+            
             onClick={() => {
               clickHandler(index);
             }}

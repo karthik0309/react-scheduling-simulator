@@ -17,19 +17,13 @@ const Gantt: React.FC<PropsType> = ({ processId, startTime, stopTime }) => {
 
   return (
     <Wrapper width={`${ganttWidth}px`}>
-      
-      <Wrapper
-        color={ganttColor.toString()}
-        width={`${ganttWidth}px`}
-      >
+      <Wrapper color={ganttColor.toString()} width={`${ganttWidth}px`}>
         <p>{processId}</p>
       </Wrapper>
-      
       <Wrapper justifyContent="space-between" width="100%">
         <p>{startTime}</p>
         <p>{stopTime}</p>
       </Wrapper>
-    
     </Wrapper>
   );
 };

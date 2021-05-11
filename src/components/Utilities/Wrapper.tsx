@@ -9,6 +9,7 @@ type WrapperType={
     alignItems?:string
     overflow?:string
     color?:string
+    position?:string
     mediaMargin?:string
 }
 
@@ -23,6 +24,7 @@ const Container =styled.div<WrapperType>`
     margin:${props=>props.margin};
     overflow:${props=>props.overflow};
     background:${props=>props.color};
+    position:${props=>props.position};
     @media (max-width:400px){
         margin:${props=>props.mediaMargin}    
     }
@@ -35,6 +37,7 @@ const Wrapper:React.FC<WrapperType> = ({children,
     justifyContent,
     alignItems,
     overflow,
+    position,
     color,mediaMargin}) => {
     return(
         <Container 
@@ -46,7 +49,8 @@ const Wrapper:React.FC<WrapperType> = ({children,
         alignItems={alignItems}
         overflow={overflow}
         mediaMargin={mediaMargin}
-        color={color}>
+        color={color}
+        position={position}>
             {children}
         </Container>
     )

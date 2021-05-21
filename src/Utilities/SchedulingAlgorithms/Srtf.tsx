@@ -1,5 +1,5 @@
+import Gantt from '../../components/Scheduling/Gantt';
 import {turnAroundTime,waitingTime,sortArrays} from './BasicFunctions'
-
 const Srtf = (arrivalTime: number[], burstTime: number[]) => {
     let arrTime = [...arrivalTime];
     let burTime = [...burstTime];
@@ -7,12 +7,15 @@ const Srtf = (arrivalTime: number[], burstTime: number[]) => {
     let completionTime: number[] = new Array(arrivalTime.length);
     let Pid: number[] = arrivalTime.map((ele, index) => index + 1);
     let ganttChart:any[]=[]
-    sortArrays(burTime, arrTime, Pid);
-    let remain = 0;
-  
+    let count=0
+
+    sortArrays(arrTime,burTime, Pid);
+
+    let remain = 0,prev=9;
+    let startTime=arrTime[0]
     for (let time = 0; remain !== arrTime.length; time++) {
       
-        let smallest = remainingTime.length - 1;
+        let smallest = remainingTime.indexOf(Math.max(...remainingTime));
 
         for (let i = 0; i < arrTime.length; i++) {
             if (arrTime[i] <= time &&
@@ -20,7 +23,12 @@ const Srtf = (arrivalTime: number[], burstTime: number[]) => {
             remainingTime[i] > 0
             ){
                 smallest = i;
-                //ganttChart[i]=(<Gantt startTime={startTime} stopTime={time} processId={`P[${Pid[i]}]`}/>)
+                console.log(smallest+" " + prev)
+                if(smallest!==prev){
+                    ganttChart[count]=(<Gantt startTime={startTime} stopTime={time+1} processId={`P[${Pid[i]}]`}/>)
+                    count++
+                }
+                startTime=time                
             }
         }
         remainingTime[smallest]--;

@@ -24,10 +24,10 @@ export const Table = styled.table<{width?:string,minWidth?:string}>`
 export const Tr = styled.tr`
   text-align: center;
   &:nth-child(odd) {
-    background-color: rgb(45, 52, 69);
+    background-color: #2d3445;
   }
   &:nth-child(even) {
-    background-color: rgb(53, 60, 76);
+    background-color: #353c4c;
   }
 `;
 

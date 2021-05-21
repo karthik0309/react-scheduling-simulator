@@ -19,10 +19,15 @@ const MessageBox=styled.div<{margin?:string}>`
     text-align:center;
     position:relative;
     margin:${props=>props.margin};
-    animation: animate 500ms ease-in-out;
+    animation: animate 2s ease-in-out;
     @keyframes animate{
-        from{transform:translateY(-100%)}
-        to{transform:translateY(0%) }
+        0%   { transform: scale(1,1)    translateY(-100%); }
+        10%  { transform: scale(1.1,.9) translateY(0); }
+        30%  { transform: scale(.9,1.1) translateY(-100px); }
+        50%  { transform: scale(1,1)    translateY(0); }
+        57%  { transform: scale(1,1)    translateY(-7px); }
+        64%  { transform: scale(1,1)    translateY(0); }
+        100% { transform: scale(1,1)    translateY(0); }
     }
 `
 const Div=styled.div`

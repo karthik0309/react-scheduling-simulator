@@ -29,6 +29,14 @@ const MessageBox=styled.div<{margin?:string}>`
         64%  { transform: scale(1,1)    translateY(0); }
         100% { transform: scale(1,1)    translateY(0); }
     }
+    @media (max-width:450px){
+        margin-left:5%;
+        width:75vw;
+    }
+    @media (max-width:400px){
+        margin:0;
+        width:75vw;
+    }
 `
 const Div=styled.div`
     position:absolute;

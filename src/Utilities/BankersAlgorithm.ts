@@ -1,8 +1,16 @@
 const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
     
-    // const alloc:number[][]=JSON.parse(JSON.stringify(allocation))
-    // const max:number[][]=JSON.parse(JSON.stringify(maximum))
-    // const instance:number[]=[...inst]
+    //  const alloc:number[][]=[[0, 1, 0 ], 
+    //                           [ 2, 0, 0 ], 
+    //                           [ 3, 0, 2 ], 
+    //                           [ 2, 1, 1 ], 
+    //                           [ 0, 0, 2 ]]
+    //  const max:number[][]=[[ 7, 5, 3 ],
+    //                       [ 3, 2, 2 ],
+    //                       [ 9, 0, 2 ], 
+    //                       [ 2, 2, 2 ], 
+    //                       [ 4, 3, 3 ]]
+    //  const instance:number[]=[10,5,7]
 
     const noOfResources=alloc[0].length
     const noOfProcess=alloc.length
@@ -21,15 +29,13 @@ const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
         }
         available[i]=instance[i]-sum
     }
-    console.log(available)
-
+    const initAvailable:number[]=[...available]
     for(let i=0;i<noOfProcess;i++){
         need[i]=new Array(noOfResources)
         for(let j=0;j<noOfResources;j++){
             need[i][j]=max[i][j]-alloc[i][j]
         }
     }
-    console.log(need)
     while(count!==0){
         let safeState=0
         for(let i=0;i<noOfProcess;i++){
@@ -58,7 +64,7 @@ const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
         }
 
     }
-    return [need,available,answer]
+    return [need,initAvailable,answer]
 }
 
 //  const alloc=[[0, 1, 0 ], 

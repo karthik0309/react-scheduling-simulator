@@ -59,9 +59,10 @@ const InputTable = () => {
     
     const handleSubmit=()=>{
         dispatch({type:"SETDATA" ,
+        instance:values,
         alloc:allocation ,
-        max:maximum,
-        instance:values})
+        max:maximum
+        })
     }
 
     return (

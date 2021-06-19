@@ -16,6 +16,9 @@ Cpu scheduling simulator is a project where you can visualize basic scheduling a
 ## Main page
 ![Alt text](./Output/startPage.png)
 
+### Modal
+![Alt text](./Output/Modal.png)
+
 ## Scheduling Algorithms
 ### input table 
 ![Alt text](./Output/input1.png)
@@ -24,6 +27,9 @@ Cpu scheduling simulator is a project where you can visualize basic scheduling a
 ![Alt text](./Output/Fcfs.png)
 ### RoundRobin
 ![Alt text](./Output/roundrobin.png)
+
+### Responsive
+![Alt text](./Output/Mobile.png)
 
 
 

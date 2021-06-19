@@ -8,6 +8,7 @@ type inputType ={
     borderRadius?:string
     label?:string
     type?:string
+    textAlign?:string
     placeholder?:string
     onChange?:(e:any)=>void
     id?:string
@@ -17,7 +18,8 @@ type inputType ={
 const InputComp=styled.input<inputType>`
   outline: none;
   font-size: larger;
-  text-align: center;
+  padding:6px;
+  text-align: ${props=>props.textAlign ? props.textAlign : "center"};
   background-color: transparent;
   color: white;
   height: ${props=>props.height ? props.height : "40px"};
@@ -37,11 +39,13 @@ const Input: React.FC<inputType>=({id,
   label,
   placeholder,
   name,
+  textAlign,
   onChange})=>{
   return (
       <>
         <label htmlFor="">{label}</label>
         <InputComp 
+          autoComplete="off"
           width={width}
           height={height}
           border={border}
@@ -49,6 +53,7 @@ const Input: React.FC<inputType>=({id,
           margin={margin}
           type={type}
           placeholder={placeholder}
+          textAlign={textAlign}
           onChange={onChange}
           id={id}
           name={name}

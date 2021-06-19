@@ -30,9 +30,9 @@ const App = () => {
         </Button>
       </Link>
 
-      <Link to="/Rag">
+      <Link to="/Future work">
         <Button outLined={true} width="40vw">
-          Resource Allocation graph
+          Future Work
         </Button>
       </Link>
     </Wrapper>

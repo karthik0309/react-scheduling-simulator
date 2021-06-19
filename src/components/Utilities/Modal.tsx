@@ -10,8 +10,8 @@ type Props={
 }
 
 const BackDrop=styled.div`
-    height:100vh;
-    width:100vw;
+    height:100%;
+    width:100%;
     position:fixed;
     top:0;
     left:0;
@@ -29,9 +29,10 @@ const Modal:React.FC<Props>=({message,heading,margin})=>{
 
     const modal=<Wrapper  position="fixed" 
                     width="100vw" 
+                    height="100vh"
                     justifyContent="center" 
                     alignItems="center" 
-                    height="100vh">
+                    >
                         <BackDrop/>
                         <Card 
                         heading={heading} 

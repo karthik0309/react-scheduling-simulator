@@ -1,5 +1,22 @@
 import React,{useState} from 'react'
+import styled from "styled-components"
 
+type props={
+    showScroll:boolean
+}
+const Container=styled.div<props>`
+        cursor: "pointer";
+        display: ${props=>props.showScroll ? 'flex' : 'none'};
+        position: fixed;
+        bottom:0;
+        right:0;
+        z-index:100;
+        margin:2%;
+        cursor: pointer;
+    @media (max-width:400px){
+        margin-right:18%;
+    }
+`
 const ScrollToTop = () => {
     const [showScroll, setShowScroll] = useState(false)
 
@@ -17,19 +34,10 @@ const ScrollToTop = () => {
 
     window.addEventListener('scroll', checkScrollTop)
     
-    const style={
-        cursor: "pointer",
-        display: showScroll ? 'flex' : 'none',
-        position:'fixed' as 'fixed' ,
-        bottom:0,
-        right:0,
-        margin:"2%",
-    }
     return (
-        <i className="fas fa-arrow-circle-up fa-2x"
-        style={style}
-        onClick={scrollTop}
-        ></i>
+        <Container showScroll={showScroll}>
+            <i className="fas fa-arrow-circle-up fa-2x"onClick={scrollTop}></i>
+        </Container>
     )
 }
 

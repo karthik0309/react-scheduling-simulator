@@ -1,5 +1,19 @@
 import Gantt from '../../components/Scheduling/Gantt';
 import {turnAroundTime,waitingTime,sortArrays} from './BasicFunctions'
+
+type Process={
+    start:number,
+    process:number,
+    end:number
+}
+
+let currProcess:Process ={
+    start:0,
+    process:1,
+    end:0
+}
+
+
 const Srtf = (arrivalTime: number[], burstTime: number[]) => {
     let arrTime = [...arrivalTime];
     let burTime = [...burstTime];
@@ -7,16 +21,14 @@ const Srtf = (arrivalTime: number[], burstTime: number[]) => {
     let completionTime: number[] = new Array(arrivalTime.length);
     let Pid: number[] = arrivalTime.map((ele, index) => index + 1);
     let ganttChart:any[]=[]
-    let count=0
 
     sortArrays(arrTime,burTime, Pid);
-
-    let remain = 0,prev=9;
-    let startTime=arrTime[0]
+    console.log(arrTime)
+    let remain = 0,prev=9,count=0;
+    currProcess.start=arrTime[0];
     for (let time = 0; remain !== arrTime.length; time++) {
       
         let smallest = remainingTime.indexOf(Math.max(...remainingTime));
-
         for (let i = 0; i < arrTime.length; i++) {
             if (arrTime[i] <= time &&
             remainingTime[i] < remainingTime[smallest] &&
@@ -24,12 +36,15 @@ const Srtf = (arrivalTime: number[], burstTime: number[]) => {
             ){
                 smallest = i;
                 console.log(smallest+" " + prev)
-                if(smallest!==prev){
-                    ganttChart[count]=(<Gantt startTime={startTime} stopTime={time+1} processId={`P[${Pid[i]}]`}/>)
-                    count++
-                }
-                startTime=time                
+                
             }
+        }
+        if(smallest!==currProcess.process){
+            currProcess.end=time+1
+            ganttChart[count]=(<Gantt startTime={currProcess.start} stopTime={currProcess.end} processId={`P[${currProcess.process}]`}/>)
+            currProcess.start=time+1;
+            currProcess.process=smallest;
+            count++
         }
         remainingTime[smallest]--;
         if (remainingTime[smallest] === 0) {

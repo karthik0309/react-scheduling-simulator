@@ -1,6 +1,6 @@
 # Cpu scheduling simulator
 
-# Demo (https://os-sim.netlify.app/)
+### Demo (https://os-sim.netlify.app/)
 
 Cpu scheduling simulator is a project where you can visualize basic scheduling alorithms like:
 

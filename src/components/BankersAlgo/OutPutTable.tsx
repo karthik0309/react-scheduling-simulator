@@ -44,7 +44,14 @@ const OutPutTable = () => {
                     </tbody>
                 </Table>
             </Wrapper>
+            
         </Wrapper>}
+        <h2>Safe State:</h2>
+        <Wrapper>
+        {state.safeProcess.map((ele)=>(
+                <p key={ele}>P{ele+1} &nbsp; &nbsp;</p>
+        ))}
+        </Wrapper>
         </React.Fragment>
     )
 }

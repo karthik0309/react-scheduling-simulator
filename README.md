@@ -1,5 +1,7 @@
 # Cpu scheduling simulator
 
+# Demo (https://os-sim.netlify.app/)
+
 Cpu scheduling simulator is a project where you can visualize basic scheduling alorithms like:
 
 - FCFS
@@ -31,6 +33,3 @@ Cpu scheduling simulator is a project where you can visualize basic scheduling a
 ### Responsive
 ![Alt text](./Output/Mobile.png)
 
-
-
-# Still working on project

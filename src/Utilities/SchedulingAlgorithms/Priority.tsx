@@ -1,4 +1,17 @@
 import {sortArrays,turnAroundTime,waitingTime} from './BasicFunctions'
+import Gantt from '../../components/Scheduling/Gantt';
+
+type Process={
+    start:number,
+    process:number,
+    end:number
+}
+
+let currProcess:Process ={
+    start:0,
+    process:0,
+    end:0
+}
 
 const Priority = (
     arrivalTime: number[],
@@ -12,13 +25,14 @@ const Priority = (
     let completionTime: number[] = new Array(arrivalTime.length);
     let Pid: number[] = arrivalTime.map((ele, index) => index + 1);
     let ganttChart:any[]=[]
+    let smallestArr = Math.min(...arrTime)
     sortArrays(prior,burTime, arrTime);
     sortArrays(prior,burTime, Pid);
-    let remain = 0;
+    let remain = 0,count=0;
   
     for (let time = 0; remain !== arrTime.length; time++) {
       
-        let smallest = remainingTime.length - 1;
+        let smallest = remainingTime.indexOf(Math.max(...remainingTime));
 
         for (let i = 0; i < arrTime.length; i++) {
             if (arrTime[i] <= time &&
@@ -27,6 +41,13 @@ const Priority = (
             ){
                 smallest = i;
             }
+        }
+        if(smallest!==currProcess.process && time>smallestArr){
+            currProcess.end=time+1
+            ganttChart[count]=(<Gantt startTime={currProcess.start} stopTime={currProcess.end} processId={`P[${currProcess.process+1}]`}/>)
+            currProcess.start=time+1;
+            currProcess.process=smallest;
+            count++
         }
         remainingTime[smallest]--;
         if (remainingTime[smallest] === 0) {

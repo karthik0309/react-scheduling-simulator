@@ -15,7 +15,6 @@ const initialState: BankerState = {
 
 const StateProvider: React.FC = ({ children }) => {
     const [state, dispatch] = useReducer(Reducer, initialState);
-    console.log(state)
     return (
       <GlobalState.Provider value={{ state, dispatch }}>
         {children}

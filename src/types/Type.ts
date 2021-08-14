@@ -41,4 +41,12 @@ type setBankersData={
   alloc:number[][]
   max:number[][]
 }
+
+type safeState={
+  need:number[][],
+  initAvailable:number[],
+  answer:number[]
+}
+
+export type Answer = safeState | null
 export type BanckerAction = setBankersData 

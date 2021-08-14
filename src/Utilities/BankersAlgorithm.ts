@@ -1,19 +1,7 @@
 const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
-    
-    //  const alloc:number[][]=[[0, 1, 0 ], 
-    //                           [ 2, 0, 0 ], 
-    //                           [ 3, 0, 2 ], 
-    //                           [ 2, 1, 1 ], 
-    //                           [ 0, 0, 2 ]]
-    //  const max:number[][]=[[ 7, 5, 3 ],
-    //                       [ 3, 2, 2 ],
-    //                       [ 9, 0, 2 ], 
-    //                       [ 2, 2, 2 ], 
-    //                       [ 4, 3, 3 ]]
-    //  const instance:number[]=[10,5,7]
 
-    const noOfResources=alloc[0].length
-    const noOfProcess=alloc.length
+    const noOfResources=3
+    const noOfProcess=5
     const need:number[][]=new Array(noOfProcess)
     const available:number[]=new Array(noOfResources)
     const flag:number[]=new Array(noOfProcess)
@@ -21,7 +9,7 @@ const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
     let count=noOfProcess,index=0
     flag.fill(1,0,flag.length)
 
-    
+    console.log(noOfResources,noOfProcess)
     for(let i=0;i<noOfResources;i++){
         let sum=0;
         for(let j=0;j<noOfProcess;j++){
@@ -34,6 +22,7 @@ const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
         need[i]=new Array(noOfResources)
         for(let j=0;j<noOfResources;j++){
             need[i][j]=max[i][j]-alloc[i][j]
+            console.log(max[i][j]-alloc[i][j])
         }
     }
     while(count!==0){
@@ -58,30 +47,13 @@ const BankersAlgorithm=(instance:number[],alloc:number[][],max:number[][])=>{
                 }
             }
         }
-        
         if(!safeState){
-            return "Error: Not safe process"
+            alert('Error: Deadlock in given process')
+            return null;
         }
 
     }
-    return [need,initAvailable,answer]
+    return {need,initAvailable,answer}
 }
-
-//  const alloc=[[0, 1, 0 ], 
-//                         [ 2, 0, 0 ], 
-//                         [ 3, 0, 2 ], 
-//                         [ 2, 1, 1 ], 
-//                         [ 0, 0, 2 ]]
-// const max=[[ 7, 5, 3 ],
-//                     [ 3, 2, 2 ],
-//                     [ 9, 0, 2 ], 
-//                     [ 2, 2, 2 ], 
-//                     [ 4, 3, 3 ]]
-// const instance=[10,5,7]
-
-// BankersAlgorithm(instance,alloc,max)
-// console.log(alloc[0].length)
-
-
 
 export default BankersAlgorithm

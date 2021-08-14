@@ -7,18 +7,18 @@ import Instance from './Instance'
 import {TableInput} from '../Utilities/Table'
 import {bankersTableHead} from '../../constants/constants'
 
-const initialValues={
-    alloc:[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
-    max:[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
-}
+const initialValues=[
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+]
 const instanceValues=[0,0,0]
 
 const names=["A","B","C"]
 
 const InputTable = () => {
 
-    const [allocation,setAllocation]=useState(initialValues.alloc)
-    const [maximum,setMaximum]=useState(initialValues.max)
+    const [allocation,setAllocation]=useState(initialValues[0])
+    const [maximum,setMaximum]=useState(initialValues[1])
     const [values,setValues]=useState(instanceValues)
     const [error,setError]=useState('')
     const {dispatch} =useGlobalState()
@@ -75,7 +75,7 @@ const InputTable = () => {
                     label="Allocation" 
                     thead={bankersTableHead} 
                     handleChange={handleAlloc}
-                    rows={initialValues.alloc}
+                    rows={initialValues[0]}
                     width="35vw"
                     minWidth="300px"
                     columns={names}/>
@@ -86,7 +86,7 @@ const InputTable = () => {
                     label="Max" 
                     thead={bankersTableHead} 
                     handleChange={handleMax}
-                    rows={initialValues.max}
+                    rows={initialValues[1]}
                     width="35vw"
                     minWidth="300px"
                     columns={names}/>

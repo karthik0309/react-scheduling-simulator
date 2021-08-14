@@ -5,7 +5,7 @@ const Spinner:React.FC=styled.div`
     height:40px;
     width:40px;
     border-radius:50%;
-
+    
     border:8px solid #f3f3f3;
     border-top:8px solid #2d3445;
     animation: spin 2s linear infinite;
